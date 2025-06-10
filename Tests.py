@@ -166,6 +166,16 @@ def sakt_testu():
     ielade_jaut()
     parad_logu(jaut_logs)
 
+def nakamais_jaut():
+    #Ielādē nākamo jautājumu vai beidz testu, rādot rezultātu.
+    global jaut_indekss, pirmo_reizi
+    jaut_indekss += 1
+    if jaut_indekss < jaut_kopa:
+        pirmo_reizi = True
+        pazinojums.config(text="")
+        ielade_jaut()
+    #else:
+        #parad_rezultatu()
 
 # --------------------------------- Sākuma izvēlne ---------------------------------
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
