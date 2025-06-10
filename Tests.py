@@ -156,6 +156,16 @@ def ielade_jaut():
 
     pazinojums.config(text="")    
 
+def sakt_testu():
+    #Inicializē un sāk jaunu izstrādātu testu.
+    global jaut_indekss, pirmo_reizi, pareiz_pirmaja_reiz, jaut_seciba
+    jaut_indekss = 0
+    pirmo_reizi = True
+    pareiz_pirmaja_reiz = 0
+    jaut_seciba = random.sample(range(len(jautajumi)), jaut_kopa)
+    ielade_jaut()
+    parad_logu(jaut_logs)
+
 
 # --------------------------------- Sākuma izvēlne ---------------------------------
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
@@ -165,10 +175,10 @@ virsraksts = tk.Label(sakuma_logs,
 virsraksts.pack(pady=(60,20))
 
 poga_sakt = tk.Button(sakuma_logs, text="Sākt", width=20, height=2,
-                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=sakt_testu)
 poga_sakt.pack(pady=10)
 poga_apturet = tk.Button(sakuma_logs, text="Iziet", width=20, height=2,
-                     bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+                     bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=aizvert_prog)
 poga_apturet.pack()
 
 # --------------------------------- Jautājumu logs ---------------------------------
