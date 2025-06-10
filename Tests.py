@@ -205,6 +205,15 @@ pazinojums = tk.Label(jaut_logs, text="", font=('Verdana', 12),
                           fg="red", bg=BG_KRASA)
 pazinojums.pack(pady=5)
 
+# --------------------------------- Rezultātu logs ---------------------------------
+rezultatu_logs = tk.Frame(root, bg=BG_KRASA)
+rezultatu_teksts = tk.Label(rezultatu_logs, text="", font=FONTS_JAUT,
+                       fg=VIRSRAKSTS_FG, bg=BG_KRASA)
+rezultatu_teksts.pack(pady=40)
+
+poga_uz_sakumu = tk.Button(rezultatu_logs, text="Atgriezties uz sākumu", width=20, height=2,
+                     bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+poga_uz_sakumu.pack()
 
 # --------------------------------- Programmas palaišana ---------------------------------
 parad_logu(sakuma_logs)
