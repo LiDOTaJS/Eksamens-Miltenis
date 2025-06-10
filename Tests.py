@@ -205,6 +205,10 @@ def parad_rezultatu():
         text=f"No {jaut_kopa} jautājumiem, tu {pareiz_pirmaja_reiz} atbildēji pareizi ar pirmo reizi.")
     parad_logu(rezultatu_logs)
 
+def atgriezties_uz_sakumu():
+    #Atgriežas sākuma izvēlnē.
+    parad_rezultatu(sakuma_logs)
+
 # --------------------------------- Sākuma izvēlne ---------------------------------
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
 virsraksts = tk.Label(sakuma_logs,
@@ -240,7 +244,7 @@ rezultatu_teksts = tk.Label(rezultatu_logs, text="", font=FONTS_JAUT,
 rezultatu_teksts.pack(pady=40)
 
 poga_uz_sakumu = tk.Button(rezultatu_logs, text="Atgriezties uz sākumu", width=20, height=2,
-                     bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+                     bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=atgriezties_uz_sakumu)
 poga_uz_sakumu.pack()
 
 # --------------------------------- Programmas palaišana ---------------------------------
