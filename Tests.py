@@ -98,32 +98,34 @@ jautajumi = [
 jaut_kopa = 10  # kopējais jautājumu skaits
 
 #--------------------------------- globālie mainīgie ------------------------------#
+# Galvenā loga iestatīšana
 root = tk.Tk()
-root.title("Elektroniskais tests")
-root.geometry("800x450")  
-root.resizable(False, False) 
-root.configure(bg='#EEEEEE')
+root.title("📚Elektroniskais tests - Python Mainīgie") # Loga virsraksts ar emoji
+root.geometry("950x400")  # Loga izmērs
+root.resizable(False, False) # Novērš loga izmēra maiņu
+root.configure(bg='#EEEEEE') # Fona krāsa
 
 # Krāsas un fonti
 BG_KRASA    = "#F0F0F0"
-POGA_BG      = "#D9D9D9"
-POGA_FG      = "#333333"
+POGA_BG      = "#DEBD00"
+POGA_FG      = "#010368"
 VIRSRAKSTS_FG    = "#004466"
 FONTS_VIRSRAKSTS  = ('Verdana', 20, 'bold')
 FONTS_POGA    = ('Verdana', 12, 'bold')
 FONTS_JAUT  = ('Verdana', 14, 'bold')
 
 # Nejauša jautājumu secība un skaitītāji
-jaut_seciba = random.sample(range(len(jautajumi)), jaut_kopa)
-jaut_indekss = 0
-pirmo_reizi = True
-pareiz_pirmaja_reiz = 0
+jaut_seciba = random.sample(range(len(jautajumi)), jaut_kopa) # Nejaušā jautājumu secība
+jaut_indekss = 0        # Pašreizējā jautājuma indekss
+pirmo_reizi = True      # Pārbaude pirmajam mēģinājumam ar pašreizējo jautājumu
+pareiz_pirmaja_reiz = 0 # Pareizo atbilžu skaits ar pirmo mēģinājumu
 
 # --------------------------------- rāmju pārejas funkcija---------------------------------
 def parad_logu(frame):
-    #Parāda tikai izvēlēto rāmi.
+    # Paslēpj visus logus
     for f in (sakuma_logs, jaut_logs, rezultatu_logs):
         f.pack_forget()
+    # Parāda izvēlēto logu
     frame.pack(fill='both', expand=True)
 
 # --------------------------------- pogu funkcijas ---------------------------------
@@ -135,11 +137,12 @@ def ielade_jaut():
     #Atjauno jautājuma tekstu un pārveido opciju secību.
     global tagad_opcijas, mainigo_saraksts
 
-    # noņem iepriekšējās pārbaudes pogas
+    # noņem iepriekšējās izvēles pogas
     for logriks in jaut_logs.winfo_children():
         if isinstance(logriks, tk.Checkbutton):
             logriks.destroy()
 
+    # Iegūst pašreizējā jautājuma datus
     data = jautajumi[jaut_seciba[jaut_indekss]]
     jaut_virsraksts.config(text=f"{jaut_indekss+1}. {data['jautajums']}")
 
@@ -148,6 +151,7 @@ def ielade_jaut():
     random.shuffle(tagad_opcijas)
     mainigo_saraksts = []
     for opcijas in tagad_opcijas:
+        # Izveido izvēles izvēles mainīgo
         mainigais = tk.IntVar()
         parbaude = tk.Checkbutton(jaut_logs, text=opcijas, variable=mainigais,
                              font=('Verdana', 12), bg=BG_KRASA)
@@ -201,30 +205,54 @@ def nakamais_jaut():
 
 def parad_rezultatu():
     #Rāda rezultātu logu ar pareizo atbilžu skaitu.
+
+    # Nosaka rezultātu ziņojumu ar emoji, balstoties uz veikumu
+    if pareiz_pirmaja_reiz >= 8:
+        veikums = "🎉 Izcili!"
+    elif pareiz_pirmaja_reiz >= 6:
+        veikums = "👍 Labi!"
+    else:
+        veikums = "📚 Vēl jāpraktizē!"
+
     rezultatu_teksts.config(
-        text=f"No {jaut_kopa} jautājumiem, tu {pareiz_pirmaja_reiz} atbildēji pareizi ar pirmo reizi.")
+        text=f"{veikums}\n\nNo {jaut_kopa} jautājumiem, tu {pareiz_pirmaja_reiz} atbildēji pareizi ar pirmo reizi.")
     parad_logu(rezultatu_logs)
 
 def atgriezties_uz_sakumu():
     #Atgriežas sākuma izvēlnē.
-    parad_rezultatu(sakuma_logs)
+    parad_logu(sakuma_logs)
 
 # --------------------------------- Sākuma izvēlne ---------------------------------
+# Izveido galvenās izvēlnes logu
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
+
+# Galvenais virsraksts
 virsraksts = tk.Label(sakuma_logs,
-                       text="Elektroniskais tests\n\nMainīgie, datu tipi, pamatdarbības ar tiem \nPython programmēšanas valodā",
+                       text="🐍Elektroniskais tests\n\nMainīgie, datu tipi, pamatdarbības ar tiem \nPython programmēšanas valodā",
                        font=FONTS_VIRSRAKSTS, fg=VIRSRAKSTS_FG, bg=BG_KRASA, justify="center")
 virsraksts.pack(pady=(60,20))
 
+
+# Testa sākšanas poga
 poga_sakt = tk.Button(sakuma_logs, text="Sākt", width=20, height=2,
                       bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=sakt_testu)
 poga_sakt.pack(pady=10)
+
+# Programmas apturēšanas poga
 poga_apturet = tk.Button(sakuma_logs, text="Iziet", width=20, height=2,
                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=aizvert_prog)
 poga_apturet.pack()
 
+# Autors
+autors_teksts = tk.Label(sakuma_logs, text="Autors: Darens Miltenis 2PT", font=("Verdana", 12), bg=BG_KRASA, fg="#004466")
+autors_teksts.place(relx=1.0, rely=1.0, anchor='se', x=-20, y=-10)
+
 # --------------------------------- Jautājumu logs ---------------------------------
+# Izveido jautājumu logu
 jaut_logs = tk.Frame(root, bg=BG_KRASA)
+
+
+# Jautājuma teksts
 jaut_virsraksts = tk.Label(jaut_logs, text="", font=FONTS_JAUT,
                           fg=VIRSRAKSTS_FG, bg=BG_KRASA, wraplength=700, justify="left")
 jaut_virsraksts.pack(pady=20)
@@ -233,20 +261,28 @@ apstiprinat_poga = tk.Button(jaut_logs, text="Apstiprināt", width=15, height=1,
                        bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=ievadit_atbildi)
 apstiprinat_poga.pack(pady=10)
 
+# Atsauksmju ziņojums
 pazinojums = tk.Label(jaut_logs, text="", font=('Verdana', 12),
                           fg="red", bg=BG_KRASA)
 pazinojums.pack(pady=5)
 
 # --------------------------------- Rezultātu logs ---------------------------------
+# Izveido rezultātu logu
 rezultatu_logs = tk.Frame(root, bg=BG_KRASA)
+
+# Rezultātu teksts
 rezultatu_teksts = tk.Label(rezultatu_logs, text="", font=FONTS_JAUT,
                        fg=VIRSRAKSTS_FG, bg=BG_KRASA)
 rezultatu_teksts.pack(pady=40)
 
+# Atgriešanās uz izvēlni poga
 poga_uz_sakumu = tk.Button(rezultatu_logs, text="Atgriezties uz sākumu", width=20, height=2,
                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=atgriezties_uz_sakumu)
 poga_uz_sakumu.pack()
 
 # --------------------------------- Programmas palaišana ---------------------------------
+
+# Sāk lietojumprogrammu, parādot galveno izvēlni
 parad_logu(sakuma_logs)
+# Sāk galveno ciklu
 root.mainloop()
