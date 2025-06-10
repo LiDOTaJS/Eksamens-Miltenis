@@ -1,3 +1,4 @@
+import random
 import tkinter as tk
 
 #--------------------------------- testa jautājumi ------------------------------#
@@ -94,7 +95,9 @@ jautajumi = [
     }
 ]
 
-#--------------------------------- programmas logs ------------------------------#
+jaut_kopa = 10  # kopējais jautājumu skaits
+
+#--------------------------------- globālie mainīgie ------------------------------#
 root = tk.Tk()
 root.title("Elektroniskais tests")
 root.geometry("800x450")  
@@ -109,5 +112,11 @@ VIRSRAKSTS_FG    = "#004466"
 FONTS_VIRSRAKSTS  = ('Verdana', 20, 'bold')
 FONTS_POGA    = ('Verdana', 12, 'bold')
 FONTS_JAUT  = ('Verdana', 14, 'bold')
+
+# Nejauša jautājumu secība un skaitītāji
+jaut_seciba = random.sample(range(len(jautajumi)), jaut_kopa)
+jaut_indekss = 0
+pirmo_reizi = True
+pareiz_pirmaja_reiz = 0
 
 root.mainloop()
