@@ -34,4 +34,4 @@
     Python Atslēgvārdiem
     Datu Tipiem
     Datu Tipu Piešķiršanu
-    Datu Tipu Iegūšanu
+    Datu Tipu Iegūšanu.
