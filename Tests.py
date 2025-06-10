@@ -96,9 +96,18 @@ jautajumi = [
 
 #--------------------------------- programmas logs ------------------------------#
 root = tk.Tk()
-root.title("Tests")
-root.geometry("800x500")  
+root.title("Elektroniskais tests")
+root.geometry("800x450")  
 root.resizable(False, False) 
 root.configure(bg='#EEEEEE')
+
+# Krāsas un fonti
+BG_KRASA    = "#F0F0F0"
+POGA_BG      = "#D9D9D9"
+POGA_FG      = "#333333"
+VIRSRAKSTS_FG    = "#004466"
+FONTS_VIRSRAKSTS  = ('Verdana', 20, 'bold')
+FONTS_POGA    = ('Verdana', 12, 'bold')
+FONTS_JAUT  = ('Verdana', 14, 'bold')
 
 root.mainloop()
