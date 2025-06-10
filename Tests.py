@@ -166,6 +166,28 @@ def sakt_testu():
     ielade_jaut()
     parad_logu(jaut_logs)
 
+def ievadit_atbildi():
+    #Ievāc atķeksētās atbildes.
+    #Ja to skaits nav 2 vai 3 – liek atkārtoti veikt izvēli.
+    #Citādi salīdzina ar pareizajām atbildēm.
+
+    global pirmo_reizi, pareiz_pirmaja_reiz
+    izveletie = {opcijas for mainigais, opcijas in zip(mainigo_saraksts, tagad_opcijas) if mainigais.get() == 1}
+
+    # pārbauda, vai ir izvēlētas starp 2–3 atbildes
+    if not (2 <= len(izveletie) <= 3):
+        pazinojums.config(text="Atķeksē tieši 2 vai 3 atbildes!")
+        return
+
+    atbildes = jautajumi[jaut_seciba[jaut_indekss]]["atbildes"]
+    if izveletie == atbildes:
+        if pirmo_reizi:
+            pareiz_pirmaja_reiz += 1
+        nakamais_jaut()
+    else:
+        pazinojums.config(text="Nepareizi! Mēģini vēlreiz.")
+        pirmo_reizi = False
+
 def nakamais_jaut():
     #Ielādē nākamo jautājumu vai beidz testu, rādot rezultātu.
     global jaut_indekss, pirmo_reizi
@@ -204,7 +226,7 @@ jaut_virsraksts = tk.Label(jaut_logs, text="", font=FONTS_JAUT,
 jaut_virsraksts.pack(pady=20)
 
 apstiprinat_poga = tk.Button(jaut_logs, text="Apstiprināt", width=15, height=1,
-                       bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+                       bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA, command=ievadit_atbildi)
 apstiprinat_poga.pack(pady=10)
 
 pazinojums = tk.Label(jaut_logs, text="", font=('Verdana', 12),
