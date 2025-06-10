@@ -122,7 +122,7 @@ pareiz_pirmaja_reiz = 0
 # --------------------------------- rāmju pārejas funkcija---------------------------------
 def parad_logu(frame):
     #Parāda tikai izvēlēto rāmi.
-    for f in (sakuma_logs,):
+    for f in (sakuma_logs, jaut_logs):
         f.pack_forget()
     frame.pack(fill='both', expand=True)
 
@@ -140,12 +140,27 @@ virsraksts = tk.Label(sakuma_logs,
                        font=FONTS_VIRSRAKSTS, fg=VIRSRAKSTS_FG, bg=BG_KRASA, justify="center")
 virsraksts.pack(pady=(60,20))
 
-poga_sakt = tk.Button(sakuma_logs, text="Start", width=20, height=2,
+poga_sakt = tk.Button(sakuma_logs, text="Sākt", width=20, height=2,
                       bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
 poga_sakt.pack(pady=10)
-poga_apturet = tk.Button(sakuma_logs, text="Exit", width=20, height=2,
+poga_apturet = tk.Button(sakuma_logs, text="Iziet", width=20, height=2,
                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
 poga_apturet.pack()
+
+# --------------------------------- Jautājumu logs ---------------------------------
+jaut_logs = tk.Frame(root, bg=BG_KRASA)
+jaut_virsraksts = tk.Label(jaut_logs, text="", font=FONTS_JAUT,
+                          fg=VIRSRAKSTS_FG, bg=BG_KRASA, wraplength=700, justify="left")
+jaut_virsraksts.pack(pady=20)
+
+apstiprinat_poga = tk.Button(jaut_logs, text="Apstiprināt", width=15, height=1,
+                       bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
+apstiprinat_poga.pack(pady=10)
+
+pazinojums = tk.Label(jaut_logs, text="", font=('Verdana', 12),
+                          fg="red", bg=BG_KRASA)
+pazinojums.pack(pady=5)
+
 
 # --------------------------------- Programmas palaišana ---------------------------------
 parad_logu(sakuma_logs)
