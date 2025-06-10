@@ -119,4 +119,11 @@ jaut_indekss = 0
 pirmo_reizi = True
 pareiz_pirmaja_reiz = 0
 
+# --------------------------------- pogu funkcijas ---------------------------------
+
+def aizvert_prog():
+    #Aizver programmu.
+    root.destroy()
+
+
 root.mainloop()
