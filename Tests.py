@@ -122,7 +122,7 @@ pareiz_pirmaja_reiz = 0
 # --------------------------------- rāmju pārejas funkcija---------------------------------
 def parad_logu(frame):
     #Parāda tikai izvēlēto rāmi.
-    for f in (sakuma_logs, jaut_logs):
+    for f in (sakuma_logs, jaut_logs, rezultatu_logs):
         f.pack_forget()
     frame.pack(fill='both', expand=True)
 
@@ -174,8 +174,14 @@ def nakamais_jaut():
         pirmo_reizi = True
         pazinojums.config(text="")
         ielade_jaut()
-    #else:
-        #parad_rezultatu()
+    else:
+        parad_rezultatu()
+
+def parad_rezultatu():
+    #Rāda rezultātu logu ar pareizo atbilžu skaitu.
+    rezultatu_teksts.config(
+        text=f"No {jaut_kopa} jautājumiem, tu {pareiz_pirmaja_reiz} atbildēji pareizi ar pirmo reizi.")
+    parad_logu(rezultatu_logs)
 
 # --------------------------------- Sākuma izvēlne ---------------------------------
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
