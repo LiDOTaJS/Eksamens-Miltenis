@@ -119,7 +119,12 @@ jaut_indekss = 0
 pirmo_reizi = True
 pareiz_pirmaja_reiz = 0
 
-
+# --------------------------------- rāmju pārejas funkcija---------------------------------
+def parad_logu(frame):
+    #Parāda tikai izvēlēto rāmi.
+    for f in (sakuma_logs,):
+        f.pack_forget()
+    frame.pack(fill='both', expand=True)
 
 # --------------------------------- pogu funkcijas ---------------------------------
 
@@ -131,7 +136,7 @@ def aizvert_prog():
 # --------------------------------- Sākuma izvēlne ---------------------------------
 sakuma_logs = tk.Frame(root, bg=BG_KRASA)
 virsraksts = tk.Label(sakuma_logs,
-                       text="Elektroniskais tests\nMainīgie, datu tipi, pamatdarbības ar tiem Python programmēšanas valodā",
+                       text="Elektroniskais tests\n\nMainīgie, datu tipi, pamatdarbības ar tiem \nPython programmēšanas valodā",
                        font=FONTS_VIRSRAKSTS, fg=VIRSRAKSTS_FG, bg=BG_KRASA, justify="center")
 virsraksts.pack(pady=(60,20))
 
@@ -142,5 +147,6 @@ poga_apturet = tk.Button(sakuma_logs, text="Exit", width=20, height=2,
                      bg=POGA_BG, fg=POGA_FG, font=FONTS_POGA)
 poga_apturet.pack()
 
-
+# --------------------------------- Programmas palaišana ---------------------------------
+parad_logu(sakuma_logs)
 root.mainloop()
