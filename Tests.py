@@ -127,10 +127,34 @@ def parad_logu(frame):
     frame.pack(fill='both', expand=True)
 
 # --------------------------------- pogu funkcijas ---------------------------------
-
 def aizvert_prog():
     #Aizver programmu.
     root.destroy()
+
+def ielade_jaut():
+    #Atjauno jautājuma tekstu un pārveido opciju secību.
+    global tagad_opcijas, mainigo_saraksts
+
+    # noņem iepriekšējās pārbaudes pogas
+    for logriks in jaut_logs.winfo_children():
+        if isinstance(logriks, tk.Checkbutton):
+            logriks.destroy()
+
+    data = jautajumi[jaut_seciba[jaut_indekss]]
+    jaut_virsraksts.config(text=f"{jaut_indekss+1}. {data['jautajums']}")
+
+    # sajauc opcijas un izveido jaunas
+    tagad_opcijas = data["varianti"].copy()
+    random.shuffle(tagad_opcijas)
+    mainigo_saraksts = []
+    for opcijas in tagad_opcijas:
+        mainigais = tk.IntVar()
+        parbaude = tk.Checkbutton(jaut_logs, text=opcijas, variable=mainigais,
+                             font=('Verdana', 12), bg=BG_KRASA)
+        parbaude.pack(anchor='w', padx=40, pady=3)
+        mainigo_saraksts.append(mainigais)
+
+    pazinojums.config(text="")    
 
 
 # --------------------------------- Sākuma izvēlne ---------------------------------
