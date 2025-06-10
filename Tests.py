@@ -87,11 +87,11 @@ jautajumi = [
 #--------------------------------- 10 ------------------------------#
     {
         "jautajums": "Kuri ir pareizi nosacījumi par Python mainīgo vērtību piešķiršanu?",
-        "varianti": ["Var piešķirt vienu un to pašu vērtību vairākiem mainīgajiem vienā rindā.",
+        "varianti": ["Var piešķirt piederīgu vērtību dažādiem mainīgajiem vienā rindā.",
                     "Mainīgajiem var tikai piešķirt vērtības atsevišķi katrā rindā.",
                     "Python ļauj piešķirt vairākas vērtības vairākiem mainīgajiem vienā rindā.",
                     "Mainīgajiem nevar piešķirt vairākas vērtības vienā rindā."],
-        "atbildes": {"Var piešķirt vienu un to pašu vērtību vairākiem mainīgajiem vienā rindā.", "Python ļauj piešķirt vairākas vērtības vairākiem mainīgajiem vienā rindā."}
+        "atbildes": {"Var piešķirt piederīgu vērtību dažādiem mainīgajiem vienā rindā.", "Python ļauj piešķirt vairākas vērtības vairākiem mainīgajiem vienā rindā."}
     }
 ]
 
